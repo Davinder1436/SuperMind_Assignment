@@ -43,6 +43,7 @@ import {
   Calendar,
 } from "lucide-react";
 import Footer from "@/components/layout/Footer";
+import EnhancedChatClient from "./EnhancedChatClient";
 
 // Generate more realistic mock data
 const generateMockData = () => {
@@ -584,6 +585,7 @@ const Dashboard = () => {
       <div className="pt-12">
         <Footer />
       </div>
+      <EnhancedChatClient />
     </div>
   );
 };
