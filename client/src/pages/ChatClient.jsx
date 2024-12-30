@@ -11,7 +11,7 @@ const ChatClient = () => {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
-    const wsConnection = new WebSocket("ws://13.51.196.191:3000");
+    const wsConnection = new WebSocket("wss://8f07-13-51-196-191.ngrok-free.app");
     wsConnection.onmessage = (event) => {
       const data = JSON.parse(event.data);
       if (data.type === "requestId") {
@@ -45,7 +45,7 @@ const ChatClient = () => {
       setError(null);
       setMessages((prev) => [...prev, { text: inputMessage, type: "user" }]);
 
-      const response = await fetch("http://13.51.196.191:3000/chat", {
+      const response = await fetch("https://8f07-13-51-196-191.ngrok-free.app/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ input_value: inputMessage, requestId }),
