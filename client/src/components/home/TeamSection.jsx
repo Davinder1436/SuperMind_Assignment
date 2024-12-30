@@ -11,7 +11,7 @@ const TeamSection = () => {
         "https://media.licdn.com/dms/image/v2/D4D03AQGYfizBcQGVXA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1698137364469?e=1741219200&v=beta&t=R7fzAqHEFVmY0NXMemIuDu7LgzD5RFz3BP3rUcy1mS0",
       graduationYear: "2027",
       college: "NIT Jalandhar",
-      linkedin: "https://linkedin.com/in/chahatkesharwani",
+      linkedin: "https://linkedin.com/in/chahatkesharwani/",
       github: "https://github.com/chahatkesh",
     },
     {
@@ -31,13 +31,12 @@ const TeamSection = () => {
         "https://media.licdn.com/dms/image/v2/D4E03AQG87n2sers9aA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1725363814807?e=1741219200&v=beta&t=3SBlI7ohn1NqqsZLGnAyFcBNDFNP5SwryZUSFENsJS8",
       graduationYear: "2028",
       college: "NIT Jalandhar",
-      linkedin:
-        "https://media.licdn.com/dms/image/v2/D4E03AQG87n2sers9aA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1725363814807?e=1741219200&v=beta&t=3SBlI7ohn1NqqsZLGnAyFcBNDFNP5SwryZUSFENsJS8",
+      linkedin: "https://www.linkedin.com/in/rishi-ahuja-b1a224310/",
       github: "https://github.com/rishiahuja",
     },
     {
       name: "Vatsal Khanna",
-      role: "DataStax Astra DB",
+      role: "ML Developer",
       image:
         "https://media.licdn.com/dms/image/v2/D4E03AQGBwIJdp-bJeQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1728579143693?e=1741219200&v=beta&t=L0B61qKKRKdE0QuTzfnsxGG81y3LLmqpW0eM2L43nFM",
       graduationYear: "2027",
