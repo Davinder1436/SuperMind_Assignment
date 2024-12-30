@@ -51,7 +51,7 @@ const ChatClient = () => {
       setError(null);
       setMessages((prev) => [...prev, { text: inputMessage, type: "user" }]);
 
-      const response = await fetch("http://13.51.196.191:3000/chat", {
+      const response = await fetch("https://13.51.196.191:3000/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
