@@ -30,6 +30,9 @@ wss.on('connection', (ws) => {
     ws.send(JSON.stringify({ type: 'requestId', requestId }));
 });
 
+app.get('/', (req, res) => {
+    res.send('Hello World');
+});
 
 app.post('/chat', async (req, res) => {
     const { input_value, requestId } = req.body;
@@ -81,3 +84,4 @@ const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+
