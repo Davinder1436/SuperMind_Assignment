@@ -1,9 +1,9 @@
-import { useState, useEffect, useCallback } from 'react';
-import { MessageCircle, Send, Loader2 } from 'lucide-react';
+import { useState, useEffect, useCallback } from "react";
+import { MessageCircle, Send, Loader2 } from "lucide-react";
 
 const ChatClient = () => {
   const [messages, setMessages] = useState([]);
-  const [inputMessage, setInputMessage] = useState('');
+  const [inputMessage, setInputMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [ws, setWs] = useState(null);
   const [requestId, setRequestId] = useState(null);
@@ -11,24 +11,27 @@ const ChatClient = () => {
 
   // WebSocket connection setup
   useEffect(() => {
-    const wsConnection = new WebSocket('ws://13.51.196.191:3000');
+    const wsConnection = new WebSocket("wss://13.51.196.191:3000");
 
     wsConnection.onmessage = (event) => {
       const data = JSON.parse(event.data);
-      
-      if (data.type === 'requestId') {
+
+      if (data.type === "requestId") {
         setRequestId(data.requestId);
-      } else if (data.type === 'response') {
-        setMessages(prev => [...prev, { text: data.message, type: 'response' }]);
+      } else if (data.type === "response") {
+        setMessages((prev) => [
+          ...prev,
+          { text: data.message, type: "response" },
+        ]);
         setIsLoading(false);
-      } else if (data.type === 'error') {
+      } else if (data.type === "error") {
         setError(data.message);
         setIsLoading(false);
       }
     };
 
     wsConnection.onerror = (error) => {
-      setError('WebSocket connection error');
+      setError("WebSocket connection error");
       setIsLoading(false);
     };
 
@@ -46,24 +49,24 @@ const ChatClient = () => {
     try {
       setIsLoading(true);
       setError(null);
-      setMessages(prev => [...prev, { text: inputMessage, type: 'user' }]);
+      setMessages((prev) => [...prev, { text: inputMessage, type: "user" }]);
 
-      const response = await fetch('http://13.51.196.191:3000/chat', {
-        method: 'POST',
+      const response = await fetch("https://13.51.196.191:3000/chat", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           input_value: inputMessage,
-          requestId
-        })
+          requestId,
+        }),
       });
 
       if (!response.ok) {
-        throw new Error('Failed to send message');
+        throw new Error("Failed to send message");
       }
 
-      setInputMessage('');
+      setInputMessage("");
     } catch (err) {
       setError(err.message);
       setIsLoading(false);
@@ -84,11 +87,10 @@ const ChatClient = () => {
           <div
             key={index}
             className={`mb-4 p-3 rounded-lg ${
-              message.type === 'user' 
-                ? 'bg-blue-100 ml-auto max-w-[80%]' 
-                : 'bg-gray-100 mr-auto max-w-[80%]'
-            }`}
-          >
+              message.type === "user"
+                ? "bg-blue-100 ml-auto max-w-[80%]"
+                : "bg-gray-100 mr-auto max-w-[80%]"
+            }`}>
             <p className="text-gray-800">{message.text}</p>
           </div>
         ))}
@@ -113,7 +115,7 @@ const ChatClient = () => {
           type="text"
           value={inputMessage}
           onChange={(e) => setInputMessage(e.target.value)}
-          onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
+          onKeyPress={(e) => e.key === "Enter" && sendMessage()}
           placeholder="Type your message..."
           className="flex-1 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           disabled={isLoading}
@@ -121,8 +123,7 @@ const ChatClient = () => {
         <button
           onClick={sendMessage}
           disabled={isLoading || !inputMessage.trim()}
-          className="p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed"
-        >
+          className="p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed">
           <Send size={20} />
         </button>
       </div>
