@@ -2,14 +2,27 @@
 ## Complete Technical Documentation
 
 ## Table of Contents
-1. [Project Overview](#project-overview)
-2. [System Architecture](#system-architecture)
-3. [Frontend Implementation](#frontend-implementation)
-4. [Backend Implementation](#backend-implementation)
-5. [LangFlow Integration](#langflow-integration)
-6. [Technical Specifications](#technical-specifications)
-7. [API Documentation](#api-documentation)
-8. [Data Structure](#data-structure)
+1. [Deployment](#deployment)
+2. [Project Overview](#project-overview)
+3. [System Architecture](#system-architecture)
+4. [Frontend Implementation](#frontend-implementation)
+5. [Backend Implementation](#backend-implementation)
+6. [LangFlow Integration](#langflow-integration)
+7. [Technical Specifications](#technical-specifications)
+8. [API Documentation](#api-documentation)
+9. [Data Structure](#data-structure)
+
+## Deployment
+
+### Live Application
+- Production URL: https://socialanalytics-client.onrender.com/
+- Platform: Render
+- Status: Active
+
+### Deployment Infrastructure
+- Frontend: Render Web Services
+- Database: DataStax Astra DB
+- AI Integration: Langflow & OpenAI
 
 ## Project Overview
 
