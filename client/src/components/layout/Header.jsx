@@ -39,8 +39,8 @@ const Header = () => {
         <nav className="flex items-center justify-between">
           <div
             onClick={() => scrollToSection("hero")}
-            className="text-2xl font-bold text-primary-600 cursor-pointer">
-            SocialAnalytics
+            className="text-2xl font-bold text-primary-600 cursor-pointer flex gap-4 justify-center items-center">
+            <img src="/insightly.svg" alt="Logo" className="h-10" />
           </div>
 
           {/* Desktop Menu */}
@@ -69,43 +69,13 @@ const Header = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-gray-600 hover:text-primary-600 transition-colors"
+          <Link
+            to="/dashboard"
+            className="md:hidden bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-colors flex items-center gap-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+            <ArrowRight size={24} />
+          </Link>
         </nav>
-
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="md:hidden absolute top-full left-0 w-full bg-white shadow-lg py-4">
-            <div className="flex flex-col gap-4 px-4">
-              <button
-                onClick={() => scrollToSection("features")}
-                className="text-gray-600 hover:text-primary-600 transition-colors py-2">
-                Features
-              </button>
-              <button
-                onClick={() => scrollToSection("team")}
-                className="text-gray-600 hover:text-primary-600 transition-colors py-2">
-                Team
-              </button>
-              <button
-                onClick={() => scrollToSection("contact")}
-                className="text-gray-600 hover:text-primary-600 transition-colors py-2">
-                Contact
-              </button>
-              <button className="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-colors flex items-center justify-center gap-2">
-                Get Started
-                <ArrowRight size={18} />
-              </button>
-            </div>
-          </motion.div>
-        )}
       </div>
     </header>
   );

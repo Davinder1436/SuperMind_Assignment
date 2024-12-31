@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   Select,
@@ -106,7 +107,6 @@ const DateRangePicker = ({
   return (
     <div className="flex items-center gap-2">
       <div className="flex items-center gap-2">
-        <Calendar className="h-4 w-4 text-muted-foreground" />
         <input
           type="date"
           value={startDate}
@@ -548,44 +548,77 @@ const Dashboard = () => {
     window.URL.revokeObjectURL(url);
   };
 
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 20;
+      setScrolled(isScrolled);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-background p-4 md:p-6">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="max-w-7xl mx-auto space-y-6">
-        <DashboardHeader
-          dateRange={state.dateRange}
-          setDateRange={(range) =>
-            setState((prev) => ({ ...prev, dateRange: range }))
-          }
-          selectedTypes={state.selectedPostTypes}
-          setSelectedTypes={(types) =>
-            setState((prev) => ({ ...prev, selectedPostTypes: types }))
-          }
-          onRefresh={handleRefresh}
-          onExport={handleExport}
-        />
+    <div className="min-h-screen bg-gray-50">
+      <header
+        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+          scrolled ? "bg-white/90 backdrop-blur-md shadow-sm" : "bg-transparent"
+        }`}>
+        <div className="max-w-7xl mx-auto px-4 py-4">
+          <nav className="flex items-center justify-between">
+            <Link
+              to={"/"}
+              className="text-2xl font-bold text-primary-600 cursor-pointer flex gap-4 justify-center items-center">
+              <img src="/insightly.svg" alt="Logo" className="h-10" />
+            </Link>
+            <div className="hidden md:flex items-center gap-8">
+              <Button className="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-colors flex items-center gap-2">
+                Get Answers with Ai!
+              </Button>
+            </div>
+          </nav>
+        </div>
+      </header>
+      <div className="min-h-screen bg-background p-4 md:p-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="max-w-7xl mx-auto space-y-6 mt-16">
+          <DashboardHeader
+            dateRange={state.dateRange}
+            setDateRange={(range) =>
+              setState((prev) => ({ ...prev, dateRange: range }))
+            }
+            selectedTypes={state.selectedPostTypes}
+            setSelectedTypes={(types) =>
+              setState((prev) => ({ ...prev, selectedPostTypes: types }))
+            }
+            onRefresh={handleRefresh}
+            onExport={handleExport}
+          />
 
-        <PerformanceCards
-          data={{
-            postDistribution: aggregatedData.postDistribution,
-            engagementSummary: aggregatedData.engagementSummary,
-            totals: aggregatedData.totals,
-          }}
-        />
+          <PerformanceCards
+            data={{
+              postDistribution: aggregatedData.postDistribution,
+              engagementSummary: aggregatedData.engagementSummary,
+              totals: aggregatedData.totals,
+            }}
+          />
 
-        <PerformanceChart data={aggregatedData.performanceData} />
+          <PerformanceChart data={aggregatedData.performanceData} />
 
-        <TypeComparisonChart data={aggregatedData.typeComparison} />
+          <TypeComparisonChart data={aggregatedData.typeComparison} />
 
-        <DataGrid data={filteredPosts} />
-      </motion.div>
+          <DataGrid data={filteredPosts} />
+        </motion.div>
+        <EnhancedChatClient />
+      </div>
       <div className="pt-12">
         <Footer />
       </div>
-      <EnhancedChatClient />
     </div>
   );
 };

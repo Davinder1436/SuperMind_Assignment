@@ -17,7 +17,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 py-16">
           {/* Company Info */}
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold">SocialAnalytics</h3>
+            <img src="/logo2.svg" alt="logo" className="w-16" />
             <p className="text-gray-400">
               Transforming social media strategy with AI-powered analytics
             </p>
