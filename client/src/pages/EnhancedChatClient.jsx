@@ -4,15 +4,15 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-const EnhancedChatClient = () => {
+const EnhancedChatClient = ({ isExpanded, setIsExpanded }) => {
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [ws, setWs] = useState(null);
   const [requestId, setRequestId] = useState(null);
   const [error, setError] = useState(null);
-  const [isExpanded, setIsExpanded] = useState(false);
   const messagesEndRef = useRef(null);
+  const welcomeMessageShownRef = useRef(false);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -21,6 +21,19 @@ const EnhancedChatClient = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Add welcome message when chat is opened
+  useEffect(() => {
+    if (isExpanded && !welcomeMessageShownRef.current) {
+      setMessages([
+        {
+          text: "Hello, I am your AI assistant to help you with your social media analytics",
+          type: "response",
+        },
+      ]);
+      welcomeMessageShownRef.current = true;
+    }
+  }, [isExpanded]);
 
   useEffect(() => {
     const wsConnection = new WebSocket("ws://13.51.196.191:3000");

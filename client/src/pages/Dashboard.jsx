@@ -41,7 +41,6 @@ import {
   Film,
   Image as ImageIcon,
   Images,
-  Calendar,
 } from "lucide-react";
 import Footer from "@/components/layout/Footer";
 import EnhancedChatClient from "./EnhancedChatClient";
@@ -560,6 +559,13 @@ const Dashboard = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const [chatExpanded, setChatExpanded] = useState(false);
+
+  // Function to handle AI button click
+  const handleAiButtonClick = () => {
+    setChatExpanded(true);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <header
@@ -574,7 +580,9 @@ const Dashboard = () => {
               <img src="/insightly.svg" alt="Logo" className="h-10" />
             </Link>
             <div className="hidden md:flex items-center gap-8">
-              <Button className="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-colors flex items-center gap-2">
+              <Button
+                className="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-colors flex items-center gap-2"
+                onClick={handleAiButtonClick}>
                 Get Answers with Ai!
               </Button>
             </div>
@@ -614,7 +622,10 @@ const Dashboard = () => {
 
           <DataGrid data={filteredPosts} />
         </motion.div>
-        <EnhancedChatClient />
+        <EnhancedChatClient
+          isExpanded={chatExpanded}
+          setIsExpanded={setChatExpanded}
+        />
       </div>
       <div className="pt-12">
         <Footer />
