@@ -67,8 +67,7 @@ const Footer = () => {
           <div className="space-y-4">
             <h4 className="text-lg font-semibold">Contact</h4>
             <div className="space-y-2 text-gray-400">
-              <p>Email: chahat.try@gmail.com</p>
-              <p>Phone: 9170XXXXXX</p>
+              <p>Email: developxdave@gmail.com</p>
               <p>Location: NIT Jalandhar</p>
             </div>
           </div>
@@ -93,7 +92,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-400 text-center md:text-left">
-            © 2024 SocialAnalytics. All rights reserved.
+            © 2024 Insightly. All rights reserved.
           </p>
           <div className="flex gap-6 text-gray-400">
             <a href="#" className="hover:text-white transition-colors">
