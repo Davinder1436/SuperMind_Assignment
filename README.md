@@ -1,3 +1,4 @@
+#Insightly
 # Social Media Analytics Platform
 ## Complete Technical Documentation
 
